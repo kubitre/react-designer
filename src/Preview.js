@@ -1,7 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import SVGRenderer from './SVGRenderer';
 
-import {Text, Path, Rect, Circle, Image} from './objects';
+import { Text, Path, Rect, Circle, Image } from './objects';
+import Camera from './objects/Camera';
 
 class Preview extends Component {
   static defaultProps = {
@@ -10,7 +11,8 @@ class Preview extends Component {
       'rectangle': Rect,
       'circle': Circle,
       'polygon': Path,
-      'image': Image
+      'image': Image,
+      'camera': Camera
     }
   };
 
@@ -19,7 +21,7 @@ class Preview extends Component {
   }
 
   render() {
-    let {width, height, objects, objectTypes, responsive = false} = this.props;
+    let { width, height, objects, objectTypes, responsive = false } = this.props;
 
     let style = {
       ...styles.container,
@@ -27,24 +29,24 @@ class Preview extends Component {
       width: responsive ? '100%' : width,
       height: responsive ? '100%' : height,
       padding: 0
-   };
+    };
 
-   let canvas = {
+    let canvas = {
       width: responsive ? '100%' : width,
       height: responsive ? '100%' : height,
       canvasWidth: responsive ? '100%' : width,
       canvasHeight: responsive ? '100%' : height
-   };
+    };
 
-   if (responsive) {
-     objects = objects.map(object => ({
-       ...object,
-       width: (object.width / width) * 100 + '%',
-       height: (object.height / height) * 100 + '%',
-       x: (object.x / width)*100 + '%',
-       y: (object.y / height)*100 + '%',
-     }))
-   }
+    if (responsive) {
+      objects = objects.map(object => ({
+        ...object,
+        width: (object.width / width) * 100 + '%',
+        height: (object.height / height) * 100 + '%',
+        x: (object.x / width) * 100 + '%',
+        y: (object.y / height) * 100 + '%',
+      }))
+    }
 
     return (
       <div className={'container'} style={style}>

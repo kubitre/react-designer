@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {modes} from '../constants';
+import React, { Component } from 'react';
+import { modes } from '../constants';
 import Icon from '../Icon';
 import _ from 'lodash';
 
@@ -19,14 +19,14 @@ export default class Circle extends Vector {
   };
 
   render() {
-    let {object, index} = this.props;
+    let { object, index } = this.props;
     return (
       <ellipse style={this.getStyle()}
-         {...this.getObjectAttributes()}
-         rx={object.width / 2}
-         ry={object.height / 2}
-         cx={object.x + object.width / 2}
-         cy={object.y + object.height / 2} />
+        {...this.getObjectAttributes()}
+        rx={object.width / 2}
+        ry={object.height / 2}
+        cx={object.x + object.width / 2}
+        cy={object.y + object.height / 2} />
     );
   }
 }
